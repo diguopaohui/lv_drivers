@@ -23,32 +23,32 @@ pkg_check_modules(PKG_WAYLAND wayland-client wayland-cursor wayland-protocols xk
 pkg_check_modules(PKG_LVGL lvgl)
 target_link_libraries(lv_drivers PUBLIC lvgl ${PKG_WAYLAND_LIBRARIES})
 
-if("${LIB_INSTALL_DIR}" STREQUAL "")
-  set(LIB_INSTALL_DIR "lib")
-endif()
+# if("${LIB_INSTALL_DIR}" STREQUAL "")
+#   set(LIB_INSTALL_DIR "lib")
+# endif()
 
-if("${INC_INSTALL_DIR}" STREQUAL "")
-  set(INC_INSTALL_DIR "include/lvgl/lv_drivers")
-endif()
+# if("${INC_INSTALL_DIR}" STREQUAL "")
+#   set(INC_INSTALL_DIR "include/lvgl/lv_drivers")
+# endif()
 
-install(
-  DIRECTORY "${CMAKE_SOURCE_DIR}/"
-  DESTINATION "${CMAKE_INSTALL_PREFIX}/${INC_INSTALL_DIR}/"
-  FILES_MATCHING
-  PATTERN "*.h"
-  PATTERN ".git*" EXCLUDE
-  PATTERN "CMakeFiles" EXCLUDE
-  PATTERN "docs" EXCLUDE
-  PATTERN "lib" EXCLUDE
-  PATTERN "*.pc.in" EXCLUDE)
+# install(
+#   DIRECTORY "${CMAKE_SOURCE_DIR}/"
+#   DESTINATION "${CMAKE_INSTALL_PREFIX}/${INC_INSTALL_DIR}/"
+#   FILES_MATCHING
+#   PATTERN "*.h"
+#   PATTERN ".git*" EXCLUDE
+#   PATTERN "CMakeFiles" EXCLUDE
+#   PATTERN "docs" EXCLUDE
+#   PATTERN "lib" EXCLUDE
+#   PATTERN "*.pc.in" EXCLUDE)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${PKG_LVGL_CFLAGS}")
 
-configure_file("${CMAKE_SOURCE_DIR}/lv-drivers.pc.in" lv-drivers.pc @ONLY)
+# configure_file("${CMAKE_SOURCE_DIR}/lv-drivers.pc.in" lv-drivers.pc @ONLY)
 
-install(
-  FILES "${CMAKE_BINARY_DIR}/lv-drivers.pc"
-  DESTINATION "${LIB_INSTALL_DIR}/pkgconfig/")
+# install(
+#   FILES "${CMAKE_BINARY_DIR}/lv-drivers.pc"
+#   DESTINATION "${LIB_INSTALL_DIR}/pkgconfig/")
 
 file(GLOB LV_DRIVERS_PUBLIC_HEADERS "${CMAKE_SOURCE_DIR}/lv_drv_conf.h")
 
@@ -60,9 +60,9 @@ set_target_properties(
              RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
              PUBLIC_HEADER "${LV_DRIVERS_PUBLIC_HEADERS}")
 
-install(
-  TARGETS lv_drivers
-  ARCHIVE DESTINATION "${LIB_INSTALL_DIR}"
-  LIBRARY DESTINATION "${LIB_INSTALL_DIR}"
-  RUNTIME DESTINATION "${LIB_INSTALL_DIR}"
-  PUBLIC_HEADER DESTINATION "${INC_INSTALL_DIR}")
+# install(
+#   TARGETS lv_drivers
+#   ARCHIVE DESTINATION "${LIB_INSTALL_DIR}"
+#   LIBRARY DESTINATION "${LIB_INSTALL_DIR}"
+#   RUNTIME DESTINATION "${LIB_INSTALL_DIR}"
+#   PUBLIC_HEADER DESTINATION "${INC_INSTALL_DIR}")
